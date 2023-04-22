@@ -1,4 +1,5 @@
 # minesweeper-server
+probably need to add port 5000 to whitelist on windows firewall to be able to test it
 
 # Setup docker
 docker build -t minesweeper-sqlite-server .
