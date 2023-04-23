@@ -18,4 +18,7 @@ poetry run python test_db.py
 
 # deployment
 git push heroku develop
+heroku container:push web -a minesweeper-server
+heroku container:release web -a minesweeper-server
+
 * Note: shit dies when heroku dies RIP use postgres if we want this to survive
