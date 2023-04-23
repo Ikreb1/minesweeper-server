@@ -1,8 +1,12 @@
 import requests
 import random
 
+LOCAL_DEV = False
 # Define the API endpoint
-api_url = "http://localhost:5000/players"
+if LOCAL_DEV:
+    api_url = "http://localhost:5000/players"
+else:
+    api_url = "https://minesweeper-server.herokuapp.com/players"
 
 # Add 5 test entries
 test_players = []
