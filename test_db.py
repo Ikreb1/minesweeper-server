@@ -1,7 +1,7 @@
 import requests
 import random
 
-LOCAL_DEV = False
+LOCAL_DEV = True
 # Define the API endpoint
 if LOCAL_DEV:
     api_url = "http://localhost:5000/players"
@@ -12,6 +12,7 @@ else:
 test_players = []
 for i in range(5):
     name = f"Test Player {i + 1}"
+    name = "Bob"
     score = random.randint(1, 100)
     payload = {"name": name, "score": score}
     response = requests.post(api_url, json=payload)
