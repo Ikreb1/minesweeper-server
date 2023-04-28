@@ -21,8 +21,16 @@ for i in range(5):
 
 # Get all entries
 response = requests.get(api_url)
+print(response.text)
 players = response.json()["players"]
 print("All players:")
+for player in players:
+    print(player)
+
+# Get the top 3 entries
+response = requests.get(f"{api_url}?num=3")
+players = response.json()["players"]
+print("Top 3 players:")
 for player in players:
     print(player)
 

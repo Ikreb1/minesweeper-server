@@ -30,14 +30,21 @@ def add_player():
     db.session.commit()
     return jsonify({'message': 'Player added', 'id': new_player.id}), 201
 
+# GET /players?num=5 example
 @app.route('/players', methods=['GET'])
 def get_players():
-    players = Player.query.all()
-    output = []
-    for player in players:
-        player_data = {'id': player.id, 'name': player.name, 'score': player.score}
-        output.append(player_data)
-    return jsonify({"players": output})
+    try:
+        # Gets the number of players from the request, defaults to 10 if not provided
+        num_players = request.args.get('num', default=10, type=int)
+        players = Player.query.order_by(Player.score.desc()).limit(num_players).all()
+        output = []
+        for player in players:
+            player_data = {'id': player.id, 'name': player.name, 'score': player.score}
+            output.append(player_data)
+        return jsonify({"players": output}), 200
+
+    except Exception as e:
+        return str(e), 400
 
 @app.route('/players/<int:player_id>', methods=['GET'])
 def get_player(player_id):
